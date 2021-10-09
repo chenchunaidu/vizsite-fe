@@ -4,12 +4,14 @@ import {
 import React from 'react';
 import { useRequest } from 'redux-query-react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getAllProjectsQuery } from './Store/queries';
 import ProjectCards from './Components/ProjectCards';
 import { getAllProjects } from './Store/selectors';
 import ProjectsSkeletion from './ProjectsSkeletion';
 
 export default function Projects() {
+  const history = useHistory();
   const projects = useSelector(getAllProjects) || [];
   const [
     {
@@ -17,11 +19,15 @@ export default function Projects() {
     },
   ] = useRequest(getAllProjectsQuery);
 
+  const handleAddNewProject = () => {
+    history.push('/app/projects/new');
+  };
+
   return (
     <Stack my="8" px="36">
       <Stack>
         <Flex justifyContent="flex-end">
-          <Button as="a" href="/app/projects/new">
+          <Button onClick={handleAddNewProject}>
             Add Project
           </Button>
         </Flex>
