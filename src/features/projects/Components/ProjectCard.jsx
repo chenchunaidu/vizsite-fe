@@ -79,7 +79,7 @@ export default function ProjectCard({
         />
       </Box>
       <Stack pt={10} align="left" fontSize="sm">
-        <Heading fontSize="lg" fontFamily="body" fontWeight="semibold" onClick={handleOpenProject} as="a" href={siteLink}>
+        <Heading fontSize="lg" fontFamily="body" fontWeight="semibold" onClick={handleOpenProject}>
           {name}
         </Heading>
         <Stack direction="row" justifyContent="space-between">
