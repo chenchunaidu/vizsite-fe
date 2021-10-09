@@ -76,7 +76,7 @@ export default function Editor(props) {
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div onClick={(e) => { handleCurrentNodeSelected(e, data); }}>
         <ElementBin id={value} node={node} setNode={setNode} value={value} type={type} label={label} stylesObj={stylesObj}>
-          {children?.length && children.map((item) => getElementBin(item))}
+          {children && children.length !== 0 && children.map((item) => getElementBin(item))}
         </ElementBin>
       </div>
     );
