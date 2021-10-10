@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { Stack, Box } from '@chakra-ui/react';
 import { CgListTree } from 'react-icons/cg';
@@ -18,6 +18,10 @@ import { getProjectByIdQuery } from './Store/queries';
 import { getProject } from './Store/selectors';
 import Editor from './components/Editor';
 
+import {
+  insertNode, getNodeByType,
+} from './components/helpers';
+
 const views = [{ icon: <AiTwotoneBuild />, label: 'build' }, { icon: <CgListTree />, label: 'hirearchy' }];
 
 export default function WebsiteBuilder() {
@@ -31,7 +35,8 @@ export default function WebsiteBuilder() {
 
   useEffect(() => {
     if (project) {
-      setNode(project.site.siteObj);
+      const { siteObj } = project?.site || {};
+      setNode(siteObj);
       setFileId(project.site.fileId);
       setFileLink(project.data.fileLink);
     }
@@ -69,6 +74,14 @@ export default function WebsiteBuilder() {
     setSelectedNode(nodeEle);
   };
 
+  const handleNodeDrop = useCallback(
+    (item) => {
+      console.log('handleNodeDrop', node);
+      setNode(insertNode(node, getNodeByType(item.type), '1'));
+    },
+    [node],
+  );
+
   const handleStyleObjChange = ({ e, key }) => {
     if (currentStyleObj) {
       currentStyleObj[key] = e.target.value;
@@ -100,6 +113,7 @@ export default function WebsiteBuilder() {
             setNode={setNode}
             fileId={fileId}
             fileLink={fileLink}
+            handleNodeDrop={handleNodeDrop}
             handleCurrentNodeSelected={handleCurrentNodeSelected}
           />
         </Box>
