@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
@@ -102,7 +103,7 @@ export default function Editor(props) {
           </Text>
         </Stack>
         <Stack direction="row">
-          <IconButton icon={<BsDownload />} />
+          <a href={fileLink}><IconButton icon={<BsDownload />} /></a>
           <Button onClick={() => onSave(getCodeFromNode(node, ''))} rightIcon={<AiOutlineSave />}>Save</Button>
         </Stack>
       </Stack>
