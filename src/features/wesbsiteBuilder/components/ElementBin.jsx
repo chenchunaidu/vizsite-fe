@@ -22,7 +22,6 @@ const ElementBin = (props) => {
   const {
     label, value, node, setNode, greedy, children, stylesObj,
   } = props;
-
   const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
     accept: ItemTypes.BOX,
     drop(item, monitor) {
