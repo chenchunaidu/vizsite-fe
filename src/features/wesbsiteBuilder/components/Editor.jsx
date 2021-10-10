@@ -39,13 +39,14 @@ const style = {
 
 export default function Editor(props) {
   const {
-    node, setNode, greedy, fileId, handleCurrentNodeSelected, fileLink,
+    node, setNode, greedy, fileId, handleCurrentNodeSelected, fileLink, handleNodeDrop,
   } = props;
   const { id } = useParams();
   const [{ isPending, isFinished }, saveCode] = useMutation((data) => saveCodeMutation(data, node, fileId, id));
   const onSave = (data) => {
     saveCode(data, node, fileId, id);
   };
+
   const [isEditorView, setIsEditorView] = useState(true);
   const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
     accept: ItemTypes.BOX,
@@ -54,20 +55,18 @@ export default function Editor(props) {
       if (didDrop && !greedy) {
         return;
       }
-      setNode(insertNode(node, getNodeByType(item.type), '1'));
+      handleNodeDrop(item);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       isOverCurrent: monitor.isOver({ shallow: true }),
     }),
-  }), [greedy]);
+  }), [greedy, node]);
   let backgroundColor = 'white';
   if (isOverCurrent || (isOver && greedy)) {
     backgroundColor = 'l';
   }
 
-  useEffect(() => {
-  }, [node]);
   function getElementBin(data) {
     const {
       value, label, type, children, stylesObj = {},
