@@ -10,6 +10,10 @@ import { signInSchema } from './validation';
 const LoginForm = ({ signinWithEmail }) => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(signInSchema),
+    defaultValues: {
+      email: 'test@vizsite.com',
+      password: 'test@123',
+    },
   });
 
   const onSubmit = (data) => {
