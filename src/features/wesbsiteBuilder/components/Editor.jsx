@@ -102,7 +102,7 @@ export default function Editor(props) {
           </Text>
         </Stack>
         <Stack direction="row">
-          <a href={fileLink}><IconButton icon={<BsDownload />} /></a>
+          <IconButton disabled icon={<BsDownload as="a" href={fileLink} />} />
           <Button onClick={() => onSave(getCodeFromNode(node, ''))} rightIcon={<AiOutlineSave />}>Save</Button>
         </Stack>
       </Stack>

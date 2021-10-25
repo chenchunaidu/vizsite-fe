@@ -9,7 +9,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useRequest } from 'redux-query-react';
 import { useParams } from 'react-router-dom';
 
-import reactToCSS from 'react-style-object-to-css';
+// import reactToCSS from 'react-style-object-to-css';
 import HtmlContainer from './components/HtmlContainer';
 import CssConatainer from './components/CssConatainer';
 import ViewerContainer from './components/ViewerContainer';
@@ -47,15 +47,13 @@ export default function WebsiteBuilder() {
   const [currentAttributeObj, setCurrentAttributeObj] = useState({});
 
   useEffect(() => {
-    const { stylesObj, attributes } = selectedNode;
-    setCurrentStyleObj({ ...stylesObj } || {});
+    const { styles, attributes } = selectedNode;
+    setCurrentStyleObj({ ...styles } || {});
     setCurrentAttributeObj({ ...attributes } || {});
   }, [selectedNode]);
 
   const handleApplyStyles = () => {
-    const styleString = reactToCSS(currentStyleObj);
-    selectedNode.styles = styleString;
-    selectedNode.stylesObj = currentStyleObj;
+    selectedNode.styles = currentStyleObj;
     selectedNode.attributes = currentAttributeObj;
     const nodeString = JSON.stringify(node);
     setNode(JSON.parse(nodeString));
@@ -67,8 +65,8 @@ export default function WebsiteBuilder() {
       selectedNodeEle.target.style.border = '1px dashed black';
     }
     e.target.style.border = '2px dashed blue';
-    if (!nodeEle?.stylesObj) {
-      nodeEle.stylesObj = {};
+    if (!nodeEle?.styles) {
+      nodeEle.styles = {};
     }
     setSelectedNodeEle(e);
     setSelectedNode(nodeEle);

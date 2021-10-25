@@ -345,8 +345,7 @@ export const getCodeFromNode = (node, result) => {
   if (!node.children) {
     result = `<${node.type} 
     ${node?.attributes ? Object.keys(node?.attributes).map((a) => `${a}="${node.attributes[a]}"`).join(' ')
-    : ''} 
-      id = '${node.value}' ${getStyles(node)} >\n${node.betweenTags ? `${node.betweenTags}\n` : ''}${result ? `\n${result}\n` : ''}</${node.type}>`;
+    : ''}  ${getStyles(node)} >\n${node.betweenTags ? `${node.betweenTags}\n` : ''}${result ? `\n${result}\n` : ''}</${node.type}>`;
     return result;
   }
   let temp = '';
@@ -355,8 +354,7 @@ export const getCodeFromNode = (node, result) => {
   }
   return `<${node.type}  
   ${node?.attributes ? Object.keys(node?.attributes).map((a) => `${a}="${node.attributes[a]}"`).join(' ')
-    : ''} 
-    id = '${node.value}' ${getStyles(node)}>${node.betweenTags ? `${node.betweenTags}\n` : ''}${temp ? `\n${temp}\n` : ''}</${node.type}>`;
+    : ''} ${getStyles(node)}>${node.betweenTags ? `${node.betweenTags}\n` : ''}${temp ? `\n${temp}\n` : ''}</${node.type}>`;
 };
 
 export const insertNode = (jsonTree, node, parentId) => {
