@@ -2,7 +2,7 @@ import {
   Center, Stack, Heading, Text, FormControl, FormLabel,
   Input, Button, FormHelperText, Box, FormErrorMessage,
 } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useMutation } from 'redux-query-react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,7 +11,9 @@ import { makeProjetMutation } from './Store/queries';
 import { createProjectSchema } from './validation';
 
 export default function CreateProject() {
-  const [{ isPending, isFinished }, addProject] = useMutation((data) => makeProjetMutation(data));
+  const [
+    { isPending, isFinished, status },
+    addProject] = useMutation((data) => makeProjetMutation(data));
   const history = useHistory();
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(createProjectSchema),
@@ -21,11 +23,15 @@ export default function CreateProject() {
     addProject(data);
   };
 
-  useEffect(() => {
-    if (isFinished) {
-      history.push('/app/projects');
-    }
-  }, [isFinished]);
+  // useEffect(() => {
+  //   if (isFinished) {
+  //     history.push('/app/projects');
+  //   }
+  // }, [isFinished]);
+
+  if (isFinished && status < 400) {
+    history.push('/app/projects');
+  }
 
   return (
     <Center h="90vh" bg="gray.50">
