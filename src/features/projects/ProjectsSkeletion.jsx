@@ -35,8 +35,8 @@ function ProjectSkeletonCard() {
       <Box>
         <Skeleton
           boxShadow="lg"
+          width="100%"
           height={200}
-          width={290}
         />
       </Box>
       <Stack pt={10} align="left" fontSize="sm">
