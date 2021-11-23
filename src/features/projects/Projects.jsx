@@ -23,13 +23,22 @@ export default function Projects() {
     history.push('/app/projects/new');
   };
 
+  const handleDemoProject = () => {
+    history.push('/app/editor/77c9005c-e715-4404-9904-2f756ee1668d');
+  };
+
   return (
     <Stack my="8" px="36">
       <Stack>
         <Flex justifyContent="flex-end">
-          <Button onClick={handleAddNewProject}>
-            Add Project
-          </Button>
+          <Stack direction="row">
+            <Button variant="outline" onClick={handleDemoProject}>
+              Demo Project
+            </Button>
+            <Button onClick={handleAddNewProject}>
+              Add Project
+            </Button>
+          </Stack>
         </Flex>
         <SimpleGrid columns={{ lg: '3', md: '2', sm: '1' }} gap="12">
           {isPending ? <ProjectsSkeletion /> : <ProjectCards projects={projects} />}
