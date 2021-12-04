@@ -24,7 +24,7 @@ export default function Projects() {
   };
 
   const handleDemoProject = () => {
-    history.push('/app/editor/77c9005c-e715-4404-9904-2f756ee1668d');
+    history.push('/app/editor/9067f1f8-85a3-49c9-b024-369ffd82dbbe');
   };
 
   return (
