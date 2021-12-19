@@ -45,11 +45,13 @@ export default function WebsiteBuilder() {
   const [selectedNodeEle, setSelectedNodeEle] = useState(null);
   const [currentStyleObj, setCurrentStyleObj] = useState({});
   const [currentAttributeObj, setCurrentAttributeObj] = useState({});
+  const [currentBetweenTags, setCurrentBetweenTags] = useState('');
 
   useEffect(() => {
     const { stylesObj, attributes } = selectedNode;
     setCurrentStyleObj({ ...stylesObj } || {});
     setCurrentAttributeObj({ ...attributes } || {});
+    setCurrentBetweenTags(selectedNode.betweenTags || '');
   }, [selectedNode]);
 
   const handleApplyStyles = () => {
@@ -57,8 +59,8 @@ export default function WebsiteBuilder() {
     selectedNode.styles = styleString;
     selectedNode.stylesObj = currentStyleObj;
     selectedNode.attributes = currentAttributeObj;
-    const nodeString = JSON.stringify(node);
-    setNode(JSON.parse(nodeString));
+    selectedNode.betweenTags = currentBetweenTags;
+    setNode(node);
   };
 
   const handleCurrentNodeSelected = (e, nodeEle) => {
@@ -122,9 +124,11 @@ export default function WebsiteBuilder() {
           <CssConatainer
             selectedNodeStylesObj={currentStyleObj || {}}
             selectedNodeAttributes={currentAttributeObj || {}}
+            selectedBetweenTags={currentBetweenTags}
             applyStyles={handleApplyStyles}
             handleStlyeObjChange={handleStyleObjChange}
             handleAttributeChange={handleAttributeChange}
+            handleBetweenTagsChange={(e) => setCurrentBetweenTags(e.target.value)}
           />
         </Box>
       </Stack>

@@ -11,10 +11,12 @@ import Backgrounds from './backgrounds';
 import Border from './border';
 import Effect from './effect';
 import Attributes from './attributes';
+import BetweenTags from './BetweenTags';
 
 export default function Demo({
   applyStyles, selectedNodeStylesObj,
-  handleStlyeObjChange, selectedNodeAttributes, handleAttributeChange,
+  handleStlyeObjChange, selectedNodeAttributes,
+  handleAttributeChange, selectedBetweenTags, handleBetweenTagsChange,
 }) {
   const tools = [
     'Layout',
@@ -25,6 +27,7 @@ export default function Demo({
     'Border',
     'Effect',
     'Attributes',
+    'Between Tags',
   ];
   const cssInputComponentButton = tools.map((tool) => (
     <Text key={tool}>{tool}</Text>
@@ -38,6 +41,7 @@ export default function Demo({
     <Border key="border" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
     <Effect key="effect" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
     <Attributes key="attributes" currentAttributes={selectedNodeAttributes} handleAttributeChange={handleAttributeChange} />,
+    <BetweenTags key="betweenTags" betweenTags={selectedBetweenTags} handleBetweenTagsChange={handleBetweenTagsChange} />,
   ];
 
   const accordionItems = cssInputComponentButton.map((item, index) => (

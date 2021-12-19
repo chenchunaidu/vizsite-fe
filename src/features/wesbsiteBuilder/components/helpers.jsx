@@ -8,7 +8,16 @@ export const getNodeByType = (type) => {
     text: { type: 'text', label: 'Text', betweenTags: 'Sample Text' },
     img: { type: 'img', label: 'Image' },
     input: { type: 'input', label: 'Input' },
-    button: { type: 'button', label: 'Button', betweenTags: 'Submit' },
+    button: {
+      type: 'button',
+      label: 'Button',
+      betweenTags: 'Submit',
+      styles: {
+        background: 'blue',
+        padding: '10px',
+        color: 'white',
+      },
+    },
     ul: { type: 'ul', label: 'List' },
     li: { type: 'li', label: 'List Item', betweenTags: 'List item' },
     table: { type: 'table', label: 'Table' },
@@ -224,8 +233,8 @@ export const getNodeByType = (type) => {
         color: 'white',
       },
       children: [{
-        type: 'div',
-        label: 'Div',
+        type: 'text',
+        label: 'Text',
         betweenTags: 'Logo',
         value: uuidv4(),
         styles: {
@@ -238,8 +247,8 @@ export const getNodeByType = (type) => {
         value: uuidv4(),
         children: [
           {
-            type: 'div',
-            label: 'Div',
+            type: 'text',
+            label: 'Text',
             betweenTags: 'Home',
             value: uuidv4(),
             styles: {
@@ -247,8 +256,8 @@ export const getNodeByType = (type) => {
             },
           },
           {
-            type: 'div',
-            label: 'Div',
+            type: 'text',
+            label: 'Text',
             betweenTags: 'About',
             value: uuidv4(),
             styles: {
@@ -256,8 +265,8 @@ export const getNodeByType = (type) => {
             },
           },
           {
-            type: 'div',
-            label: 'Div',
+            type: 'text',
+            label: 'Text',
             betweenTags: 'Work',
             value: uuidv4(),
             styles: {
@@ -265,8 +274,8 @@ export const getNodeByType = (type) => {
             },
           },
           {
-            type: 'div',
-            label: 'Div',
+            type: 'text',
+            label: 'Text',
             betweenTags: 'Contact us',
             value: uuidv4(),
             styles: {
