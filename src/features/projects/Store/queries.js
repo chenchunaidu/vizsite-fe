@@ -16,9 +16,9 @@ export const makeProjetMutation = (data) => ({
   body: data,
   transform: (responseBody) => {
     const responseData = responseBody ? responseBody.data : {};
-    return { createdProject: responseData };
+    return { projects: responseData };
   },
   update: {
-    createdProject: (oldValue, newValue) => newValue,
+    projects: (oldValue, newValue) => [newValue, ...oldValue || []],
   },
 });

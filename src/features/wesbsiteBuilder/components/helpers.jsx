@@ -3,21 +3,26 @@
 import { v4 as uuidv4 } from 'uuid';
 import randomString from 'randomstring';
 
+export const button = {
+  type: 'button', label: 'Button', betweenTags: 'Submit', styles: { padding: '10px', background: 'blue', color: 'white' },
+};
+
+export const input = {
+  type: 'input',
+  label: 'Input',
+  value: uuidv4(),
+  styles: {
+    border: '2px solid blue',
+    padding: '10px',
+  },
+};
+
 export const getNodeByType = (type) => {
   const nodes = {
     text: { type: 'text', label: 'Text', betweenTags: 'Sample Text' },
     img: { type: 'img', label: 'Image' },
-    input: { type: 'input', label: 'Input' },
-    button: {
-      type: 'button',
-      label: 'Button',
-      betweenTags: 'Submit',
-      styles: {
-        background: 'blue',
-        padding: '10px',
-        color: 'white',
-      },
-    },
+    input,
+    button,
     ul: { type: 'ul', label: 'List' },
     li: { type: 'li', label: 'List Item', betweenTags: 'List item' },
     table: { type: 'table', label: 'Table' },
@@ -111,25 +116,16 @@ export const getNodeByType = (type) => {
         type: 'div',
         label: 'Div',
         value: uuidv4(),
-        styles: {
-          padding: '10px',
-        },
       },
       {
         type: 'div',
         label: 'Div',
         value: uuidv4(),
-        styles: {
-          padding: '10px',
-        },
       },
       {
         type: 'div',
         label: 'Div',
         value: uuidv4(),
-        styles: {
-          padding: '10px',
-        },
       }],
     },
     rows: {
@@ -165,14 +161,7 @@ export const getNodeByType = (type) => {
         label: 'br',
         value: uuidv4(),
       },
-      {
-        type: 'input',
-        label: 'Input',
-        value: uuidv4(),
-        styles: {
-          border: '2px solid blue',
-        },
-      },
+      input,
       {
         type: 'br',
         label: 'br',
@@ -189,15 +178,7 @@ export const getNodeByType = (type) => {
         label: 'br',
         value: uuidv4(),
       },
-      {
-        type: 'input',
-        label: 'Input',
-        value: uuidv4(),
-        styles: {
-          border: '2px solid blue',
-          padding: '10px',
-        },
-      },
+      input,
       {
         type: 'br',
         label: 'br',
@@ -294,7 +275,7 @@ export const getNodeByType = (type) => {
       styles: {
         display: 'flex',
         'flex-direction': 'column',
-        padding: '10px',
+        // padding: '10px',
         background: 'blue',
         color: 'white',
         height: '100vh',
@@ -352,13 +333,19 @@ export const getNodeByType = (type) => {
   return { value: uuidv4(), ...nodes[type] };
 };
 
+export const getStyles = (node) => {
+  const { styles } = node;
+  if (styles) {
+    return `style="${Object.keys(styles).map((style) => `${style}:${styles[style]}`).join(';')}"`;
+  }
+  return '';
+};
+
 export const getCodeFromNode = (node, result) => {
   if (!node.children) {
     result = `<${node.type} 
     ${node?.attributes ? Object.keys(node?.attributes).map((a) => `${a}="${node.attributes[a]}"`).join(' ')
-    : ''} 
-      id = '${node.value}' style = "${node.styles ? JSON.stringify(node.styles).replace('{', '').replace('}', '').replaceAll('"', '')
-  .replaceAll(',', ';') : ''}" >\n${node.betweenTags ? `${node.betweenTags}\n` : ''}${result ? `\n${result}\n` : ''}</${node.type}>`;
+    : ''}  ${getStyles(node)} >\n${node.betweenTags ? `${node.betweenTags}\n` : ''}${result ? `\n${result}\n` : ''}</${node.type}>`;
     return result;
   }
   let temp = '';
@@ -367,9 +354,7 @@ export const getCodeFromNode = (node, result) => {
   }
   return `<${node.type}  
   ${node?.attributes ? Object.keys(node?.attributes).map((a) => `${a}="${node.attributes[a]}"`).join(' ')
-    : ''} 
-    id = '${node.value}' style = "${node.styles ? JSON.stringify(node.styles).replace('{', '').replace('}', '').replaceAll('"', '')
-  .replaceAll(',', ';') : ''}">${node.betweenTags ? `${node.betweenTags}\n` : ''}${temp ? `\n${temp}\n` : ''}</${node.type}>`;
+    : ''} ${getStyles(node)}>${node.betweenTags ? `${node.betweenTags}\n` : ''}${temp ? `\n${temp}\n` : ''}</${node.type}>`;
 };
 
 export const insertNode = (jsonTree, node, parentId) => {

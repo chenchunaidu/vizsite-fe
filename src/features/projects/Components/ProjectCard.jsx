@@ -37,7 +37,7 @@ export default function ProjectCard({
       zIndex={1}
     >
       <Stack justifyContent="flex-end" direction="row">
-        <IconButton variant="ghost">
+        <IconButton variant="ghost" disabled>
           <a href={fileLink}><IoIosDownload fontSize="24px" /></a>
         </IconButton>
         <IconButton variant="ghost" onClick={handleOpenProject}>
