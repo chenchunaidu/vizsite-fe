@@ -50,6 +50,7 @@ export default function WebsiteBuilder() {
   }, [selectedNode]);
 
   const handleApplyStyles = () => {
+    console.log(currentStyleObj);
     selectedNode.styles = currentStyleObj;
     selectedNode.attributes = currentAttributeObj;
     selectedNode.betweenTags = currentBetweenTags;

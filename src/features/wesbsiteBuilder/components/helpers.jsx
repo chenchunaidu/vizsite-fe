@@ -2,6 +2,7 @@
 /* eslint-disable no-param-reassign */
 import { v4 as uuidv4 } from 'uuid';
 import randomString from 'randomstring';
+import reactToCSS from 'react-style-object-to-css';
 
 export const button = {
   type: 'button', label: 'Button', betweenTags: 'Submit', styles: { padding: '10px', background: 'blue', color: 'white' },
@@ -32,14 +33,14 @@ export const getNodeByType = (type) => {
     grid: {
       type: 'div',
       label: 'Grid',
-      styles: { display: 'grid', 'grid-template-columns': 'auto auto auto', padding: '10px' },
+      styles: { display: 'grid', gridTemplateColumns: 'auto auto auto', padding: '10px' },
       children: [{
         type: 'div',
         label: 'Div',
         betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
-          'background-color': '#770000',
+          backgroundColor: '#770000',
           border: '1px solid yellow',
           padding: '20px',
           'text-align': 'center',
@@ -51,10 +52,10 @@ export const getNodeByType = (type) => {
         betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
-          'background-color': '#770000',
+          backgroundColor: '#770000',
           border: '1px solid yellow',
           padding: '20px',
-          'text-align': 'center',
+          textAlign: 'center',
         },
       },
       {
@@ -63,10 +64,10 @@ export const getNodeByType = (type) => {
         betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
-          'background-color': '#770000',
+          backgroundColor: '#770000',
           border: '1px solid yellow',
           padding: '20px',
-          'text-align': 'center',
+          textAlign: 'center',
         },
       },
       {
@@ -75,10 +76,10 @@ export const getNodeByType = (type) => {
         betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
-          'background-color': '#770000',
+          backgroundColor: '#770000',
           border: '1px solid yellow',
           padding: '20px',
-          'text-align': 'center',
+          textAlign: 'center',
         },
       },
       {
@@ -87,10 +88,10 @@ export const getNodeByType = (type) => {
         betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
-          'background-color': '#770000',
+          backgroundColor: '#770000',
           border: '1px solid yellow',
           padding: '20px',
-          'text-align': 'center',
+          textAlign: 'center',
         },
       },
       {
@@ -99,10 +100,10 @@ export const getNodeByType = (type) => {
         betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
-          'background-color': '#770000',
+          backgroundColor: '#770000',
           border: '1px solid yellow',
           padding: '20px',
-          'text-align': 'center',
+          textAlign: 'center',
         },
       }],
     },
@@ -196,7 +197,7 @@ export const getNodeByType = (type) => {
         },
       }],
       styles: {
-        'text-align': 'left',
+        textAlign: 'left',
         color: 'blue',
       },
     },
@@ -207,8 +208,8 @@ export const getNodeByType = (type) => {
         position: 'sticky',
         top: '0',
         display: 'flex',
-        'justify-content': 'space-between',
-        'align-items': 'center',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         padding: '10px',
         background: 'blue',
         color: 'white',
@@ -265,7 +266,7 @@ export const getNodeByType = (type) => {
           },
         ],
         styles: {
-          display: 'flex', 'justify-content': 'space-between', padding: '10px',
+          display: 'flex', justifyContent: 'space-between', padding: '10px',
         },
       }],
     },
@@ -274,7 +275,7 @@ export const getNodeByType = (type) => {
       label: 'Sidebar',
       styles: {
         display: 'flex',
-        'flex-direction': 'column',
+        flexDirection: 'column',
         // padding: '10px',
         background: 'blue',
         color: 'white',
@@ -336,7 +337,7 @@ export const getNodeByType = (type) => {
 export const getStyles = (node) => {
   const { styles } = node;
   if (styles) {
-    return `style="${Object.keys(styles).map((style) => `${style}:${styles[style]}`).join(';')}"`;
+    return `style= "${reactToCSS(styles)}"`;
   }
   return '';
 };
