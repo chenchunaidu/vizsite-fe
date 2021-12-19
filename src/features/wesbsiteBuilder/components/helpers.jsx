@@ -19,7 +19,7 @@ export const input = {
 
 export const getNodeByType = (type) => {
   const nodes = {
-    text: { type: 'text', label: 'Text', betweenTags: 'Sample Text' },
+    text: { type: 'p', label: 'Text', betweenTags: 'Sample Text' },
     img: { type: 'img', label: 'Image' },
     input,
     button,

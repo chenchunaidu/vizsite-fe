@@ -15,9 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { saveCodeMutation } from '../Store/queries';
 import { ItemTypes } from './ItemTypes';
-import {
-  insertNode, getNodeByType, getCodeFromNode, getCodeFromNodeForDownload,
-} from './helpers';
+import { getCodeFromNode, getCodeFromNodeForDownload } from './helpers';
 import ElementBin from './ElementBin';
 
 const beautifyHtml = require('js-beautify').html;
