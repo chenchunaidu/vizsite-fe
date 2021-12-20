@@ -1,4 +1,4 @@
-import { Stack, Box } from '@chakra-ui/react';
+import { Stack, Box, Link } from '@chakra-ui/react';
 import React from 'react';
 import NavItems from './NavItems';
 import Profile from './Profile';
@@ -12,6 +12,9 @@ export default function Nav() {
           Vizsite
         </Box>
         <NavItems navItems={navItems} />
+        <Link href="https://www.veed.io/view/b4cbeec8-5ef2-41f1-b568-fc38d4e7fbe0" isExternal fontSize="sm">
+          Demo video
+        </Link>
       </Stack>
       <Profile />
     </Stack>
